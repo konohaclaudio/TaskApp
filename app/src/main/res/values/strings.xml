@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">TaskApp</string>
+
+    <!--Login Fragment -->
+    <string name="email">E-mail</string>
+    <string name="login_edt_email">Preencha o e-mail</string>
+    <string name="edt_password">Senha</string>
+    <string name="login">Login</string>
+    <string name="text_button_create_account">Criar conta</string>
+    <string name="reccouver_account">Recuperar conta</string>
+
+    <!--Generics -->
+    <string name="msg_toastok">Tudo certo!</string>
+    <string name="msg_toastsenha">Preencha sua senha!</string>
+    <string name="msg_toastemail">Preencha seu email!</string>
+    <string name="attention">Atenção</string>
+    <string name="notice">Noticia</string>
+    <string name="Ok">Ok</string>
+    <string name="btn_save">Salvar</string>
+    <string name="btn_send">Enviar</string>
+    <string name="btn_ok">Ok</string>
+
+    <!--Register Fragment -->
+    <string name="register_frag_title">Inserira dados de usuário</string>
+    <string name="edt_name">Preencha seu nome</string>
+    <string name="edt_age">Insira sua idade</string>
+    <string name="btn_register">Registrar</string>
+    <string name="btn_back">Voltar</string>
+    <string name="password">Senha</string>
+    <string name="age">Idade</string>
+    <string name="btn_mostrar">Mostrar</string>
+
+
+    <!--Form Task Fragment -->
+    <string name="btn_view">View</string>
+    <string name="senha">Senha</string>
+    <string name="name">Nome</string>
+    <string name="status">Status</string>
+    <string name="description">Descrição</string>
+    <string name="status_task_todo">A fazer</string>
+    <string name="status_task_doing">Fazendo</string>
+    <string name="status_task_done">Feito</string>
+    <string name="status_task_made">Made</string>
+    <string name="email_empty_formtask_fragment">Preencha seu e-mail</string>
+    <string name="password_empty_formtask_fragment">Preencha uma senha</string>
+    <string name="new_task">Nova tarefa</string>
+
+    <!--Recover Task Fragment -->
+    <string name="text_recovery">Insira seu email cadastrado para recuperar a senha</string>
+    <string name="txt_recoverry_account">Recuperar conta</string>
+    <string name="email_empty_register_fragment">Preencha seu e-mail</string>
+    <string name="reccouver_empty_register_fragment">Preencha seu e-mail</string>
+    <!--Recover Task Fragment -->
+
+
+    <!--Login Fragment -->
+    <string name="text_warning">Entendi</string>
+    <string name="text_button">Ok</string>
+    <string name="text_message">Insira seu email</string>
+
+
+    <string name="btn_remover">Remover</string>
+    <string name="btn_editar">Editar</string>
+    <string name="btn_detalhes">Detalhes</string>
+    <string name="hello_blank_fragment">Detalhes</string>
+    <string name="create_account">create account</string>
+
+
+
+
+</resources>
