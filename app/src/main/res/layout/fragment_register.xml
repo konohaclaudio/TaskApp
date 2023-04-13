@@ -11,24 +11,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/color_default">
+            android:background="@color/color_default"
+            tools:ignore="ExtraText">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:background="@color/color_default">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/color_default"
                 app:navigationIcon="@drawable/ic_back_white">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_button_create_account"
-                    android:textSize="20sp"
+                    style="@style/WhiteText"
                     android:layout_marginStart="20dp"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white" />
@@ -43,10 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/register_frag_title"
-                android:textSize="30sp"
+                style="@style/WhiteTextBold"
                 android:layout_marginTop="30dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,25 +58,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name"
-                android:textSize="20sp"
+                style="@style/WhiteText"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:layout_gravity="start"
-                android:textColor="@color/white" />
+                android:layout_gravity="start" />
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_Name"
+                style="@style/EditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:maxLines="1"
-                style="@style/EditTextTheme"
-                android:inputType="text"
-                android:textColorHint="@color/black"
-                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:hint="@string/hint_name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="#2E7D32"
                 tools:ignore="Autofill" />
 
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                android:textSize="20sp"
+                style="@style/WhiteText"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="start"
@@ -97,13 +97,13 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/login_edt_email"
                 android:inputType="textEmailAddress"
+                style="@style/EditTextTheme"
                 android:gravity="start"
                 android:padding="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:background="@drawable/bg_edit_text"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:layout_marginEnd="20dp"
+                tools:ignore="VisualLintTextFieldSize" />
 
             <!--        android:drawableLeft="@drawable/ic_launcher_foreground"--> />
 
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/password"
-                android:textSize="20sp"
+                style="@style/WhiteText"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="start"
@@ -128,13 +128,12 @@
                     android:id="@+id/edt_password"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/edt_password"
+                    android:hint="@string/hint_password"
                     android:inputType="textPassword"
+                    style="@style/EditTextTheme"
                     android:padding="15dp"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
+                    android:drawableStart="@drawable/ic_password"
                     android:background="@drawable/bg_edit_text"
                     android:layout_marginStart="20dp"
                     />
@@ -149,7 +148,8 @@
                     android:layout_weight="1"
                     android:text="@string/btn_mostrar"
                     style="@style/ButtonTheme"
-                    app:iconTint="@color/color_default" />
+                    app:iconTint="@color/color_default"
+                    tools:ignore="VisualLintButtonSize" />
 
             </LinearLayout>
 
@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/age"
-                android:textSize="20sp"
+                style="@style/WhiteText"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="start"
@@ -170,10 +170,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/edt_age"
+                style="@style/EditTextTheme"
                 android:inputType="number"
                 android:padding="15dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:background="@drawable/bg_edit_text"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"

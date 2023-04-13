@@ -5,6 +5,7 @@
     <string name="email">E-mail</string>
     <string name="login_edt_email">Preencha o e-mail</string>
     <string name="edt_password">Senha</string>
+    <string name="hint_password">Escreva a senha</string>
     <string name="login">Login</string>
     <string name="text_button_create_account">Criar conta</string>
     <string name="reccouver_account">Recuperar conta</string>
@@ -21,20 +22,21 @@
     <string name="btn_ok">Ok</string>
 
     <!--Register Fragment -->
-    <string name="register_frag_title">Inserira dados de usuário</string>
+    <string name="register_frag_title">Insira os dados de usuário</string>
     <string name="edt_name">Preencha seu nome</string>
     <string name="edt_age">Insira sua idade</string>
     <string name="btn_register">Registrar</string>
     <string name="btn_back">Voltar</string>
     <string name="password">Senha</string>
     <string name="age">Idade</string>
-    <string name="btn_mostrar">Mostrar</string>
+    <string name="btn_mostrar">Show</string>
 
 
     <!--Form Task Fragment -->
     <string name="btn_view">View</string>
     <string name="senha">Senha</string>
     <string name="name">Nome</string>
+    <string name="hint_name">Escreva o nome</string>
     <string name="status">Status</string>
     <string name="description">Descrição</string>
     <string name="status_task_todo">A fazer</string>

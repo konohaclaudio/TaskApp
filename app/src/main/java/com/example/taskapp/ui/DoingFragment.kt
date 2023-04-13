@@ -45,7 +45,8 @@ class DoingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
-        initRecyclerView(getTask())
+        initRecyclerView()
+        getTask()
     }
 
     private fun initListeners(){
@@ -53,15 +54,21 @@ class DoingFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_formTaskFragment)
         } }
 
-    private fun initRecyclerView(taskList: List<Task>) {
-        taskAdapter = TaskAdapter(requireContext(),taskList) {
+    private fun initRecyclerView() {
+        taskAdapter = TaskAdapter(requireContext()) {
                 task, option ->
             optionSelected(task, option)
         }
-        binding.rvTask.layoutManager = LinearLayoutManager (requireContext())
-        binding.rvTask.setHasFixedSize(true)
-        binding.rvTask.adapter = taskAdapter
 
+        with(binding.rvTask) {
+            layoutManager = LinearLayoutManager (requireContext())
+            setHasFixedSize(true)
+            adapter = taskAdapter
+        }
+
+//        binding.rvTask.layoutManager = LinearLayoutManager (requireContext())
+//        binding.rvTask.setHasFixedSize(true)
+//        binding.rvTask.adapter = taskAdapter
     }
 
 
@@ -85,14 +92,14 @@ class DoingFragment : Fragment() {
         }
     }
 
-    private fun getTask() = listOf(
-        Task("0", "TESTANDO", Status.DOING),
-        Task("1", "Validar informaçações na tela de login", Status.DOING),
-        Task("2", "Adicionar nova funcionaldade no app", Status.DOING),
-        Task("3", "Salvar token no localmente", Status.DOING),
-        Task("4", "Criar funcionalidade de logout no app", Status.DOING),
-    )
+    private fun getTask() {
+        val taskList = listOf(
+            Task("0", "Criar nova tela do app", Status.DOING),
+            Task("1", "Validar informaçações na tela de login", Status.DOING),
+            Task("2", "Adicionar nova funcionaldade no app", Status.DOING),
+            Task("3", "Salvar token no localmente", Status.DOING),
+            Task("4", "Criar funcionalidade de logout no app", Status.DOING),)
 
-
-
+        taskAdapter.submitList(taskList)
+    }
 }

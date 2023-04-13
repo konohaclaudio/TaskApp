@@ -32,7 +32,7 @@ class DoneFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding =  FragmentDoneBinding.inflate (inflater, container, false)
         return binding.root
     }
@@ -40,7 +40,8 @@ class DoneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
-        initRecyclerView(getTask())
+        initRecyclerView()
+        getTask()
     }
 
     override fun onDestroyView() {
@@ -54,15 +55,21 @@ class DoneFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_formTaskFragment)
         } }
 
-    private fun initRecyclerView(taskList: List<Task>) {
-        taskAdapter = TaskAdapter(requireContext(),taskList) {
+    private fun initRecyclerView() {
+        taskAdapter = TaskAdapter(requireContext()) {
                 task, option ->
             optionSelected(task, option)
         }
-        binding.rvTask.layoutManager = LinearLayoutManager (requireContext())
-        binding.rvTask.setHasFixedSize(true)
-        binding.rvTask.adapter = taskAdapter
 
+        with(binding.rvTask) {
+            layoutManager = LinearLayoutManager (requireContext())
+            setHasFixedSize(true)
+            adapter = taskAdapter
+        }
+
+//        binding.rvTask.layoutManager = LinearLayoutManager (requireContext())
+//        binding.rvTask.setHasFixedSize(true)
+//        binding.rvTask.adapter = taskAdapter
     }
 
     private fun optionSelected(task: Task, option: Int) {
@@ -86,12 +93,14 @@ class DoneFragment : Fragment() {
     }
 
 
-    private fun getTask() = listOf(
-        Task("0", "Outra tela", Status.DONE),
-        Task("1", "Validar informaçações na tela de login", Status.DONE),
-        Task("2", "Adicionar nova funcionaldade no app", Status.DONE),
-        Task("3", "Salvar token no localmente", Status.DONE),
-        Task("4", "Criar funcionalidade de logout no app", Status.DONE),
-    )
+    private fun getTask() {
+        val taskList = listOf(
+            Task("0", "Criar nova tela do app", Status.DONE),
+            Task("1", "Validar informaçações na tela de login", Status.DONE),
+            Task("2", "Adicionar nova funcionaldade no app", Status.DONE),
+            Task("3", "Salvar token no localmente", Status.DONE),
+            Task("4", "Criar funcionalidade de logout no app", Status.DONE),)
 
+        taskAdapter.submitList(taskList)
+    }
 }
