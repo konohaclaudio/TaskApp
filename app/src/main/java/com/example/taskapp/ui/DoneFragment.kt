@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskapp.R
 import com.example.taskapp.adapter.TaskAdapter
-import com.example.taskapp.data.Status
-import com.example.taskapp.data.Task
+import com.example.taskapp.model.Status
+import com.example.taskapp.model.Task
 import com.example.taskapp.databinding.FragmentDoneBinding
 
 

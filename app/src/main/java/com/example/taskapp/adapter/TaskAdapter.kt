@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskapp.R
-import com.example.taskapp.data.Status
-import com.example.taskapp.data.Task
+import com.example.taskapp.model.Status
+import com.example.taskapp.model.Task
 import com.example.taskapp.databinding.ItemTaskBinding
 
 class TaskAdapter (

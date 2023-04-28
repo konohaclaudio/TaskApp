@@ -12,14 +12,23 @@
 
     <!--Generics -->
     <string name="msg_toastok">Tudo certo!</string>
-    <string name="msg_toastsenha">Preencha sua senha!</string>
-    <string name="msg_toastemail">Preencha seu email!</string>
+    <string name="msg_toast_save">Salvo com sucesso!</string>
+    <string name="msg_toast_password">Preencha sua senha!</string>
+    <string name="msg_toast_email">Preencha seu email!</string>
+    <string name="msg_toastpassword_lenght">"Insira uma senha no min 6 caracteres"</string>
     <string name="attention">Atenção</string>
     <string name="notice">Noticia</string>
     <string name="Ok">Ok</string>
     <string name="btn_save">Salvar</string>
     <string name="btn_send">Enviar</string>
     <string name="btn_ok">Ok</string>
+    <string name="error">Erro</string>
+    <string name="text_list_task_empty">Nehuma tarefas cadastrada.</string>
+    <string name="text_list_task_load">Aguarde, estamos carregando as informações.</string>
+    <string name="text_list_task_delete">Tarefa deletada com sucesso.</string>
+    <string name="text_button_dialog_confirm">Confirmar</string>
+    <string name="text_title_dialog_delete">Deseja remover esta tarefa?</string>
+    <string name="text_message_dialog_delete">Aperte em confirmar para remover a tarefa.</string>
 
     <!--Register Fragment -->
     <string name="register_frag_title">Insira os dados de usuário</string>
@@ -29,7 +38,7 @@
     <string name="btn_back">Voltar</string>
     <string name="password">Senha</string>
     <string name="age">Idade</string>
-    <string name="btn_mostrar">Show</string>
+    <string name="btn_show">Show</string>
 
 
     <!--Form Task Fragment -->
@@ -39,6 +48,7 @@
     <string name="hint_name">Escreva o nome</string>
     <string name="status">Status</string>
     <string name="description">Descrição</string>
+    <string name="hint_description">Escreva uma descrição</string>
     <string name="status_task_todo">A fazer</string>
     <string name="status_task_doing">Fazendo</string>
     <string name="status_task_done">Feito</string>
@@ -49,9 +59,10 @@
 
     <!--Recover Task Fragment -->
     <string name="text_recovery">Insira seu email cadastrado para recuperar a senha</string>
-    <string name="txt_recoverry_account">Recuperar conta</string>
+    <string name="text_recoverry_account">Recuperar conta</string>
+    <string name="text_message_recover_account_fragment">Pronto, link de recuperação enviado para seu e-mail!</string>
     <string name="email_empty_register_fragment">Preencha seu e-mail</string>
-    <string name="reccouver_empty_register_fragment">Preencha seu e-mail</string>
+    <string name="text_empty_recover_fragment">Preencha seu e-mail</string>
     <!--Recover Task Fragment -->
 
 
@@ -60,13 +71,17 @@
     <string name="text_button">Ok</string>
     <string name="text_message">Insira seu email</string>
 
-
-    <string name="btn_remover">Remover</string>
+    <string name="btn_remove">Remover</string>
     <string name="btn_editar">Editar</string>
-    <string name="btn_detalhes">Detalhes</string>
+    <string name="btn_details">Detalhes</string>
     <string name="hello_blank_fragment">Detalhes</string>
     <string name="create_account">create account</string>
 
+
+    <!--Home Fragment -->
+    <string name="text_title_dialog_confirm_logout">Deseja sair?</string>
+    <string name="text_button_dialog_confirm_logout">Confirmar</string>
+    <string name="text_message_dialog_confirm_logout">Aperte em confirmar para sair da sua conta</string>
 
 
 

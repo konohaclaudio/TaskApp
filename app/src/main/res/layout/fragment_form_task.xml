@@ -15,12 +15,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color_default"
         >
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_default"
             app:navigationIcon="@drawable/ic_back_white">
 
             <com.google.android.material.textview.MaterialTextView
@@ -41,7 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/color_default">
+        android:background="@color/color_default"
+        tools:ignore="ExtraText">
 
 
 
@@ -62,15 +65,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/bg_edit_text"
-            android:hint="@string/description"
+            android:hint="@string/hint_description"
+            android:textColorHint="@color/color_default"
             android:inputType="text"
             android:maxLines="1"
             android:padding="15dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            tools:ignore="Autofill,DuplicateSpeakableTextCheck" />
-
+            android:textColor="@color/black"></com.google.android.material.textfield.TextInputEditText>
 
         <!--        android:drawableLeft="@drawable/ic_launcher_foreground"--> />
 
@@ -88,7 +90,7 @@
 
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/rgStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
