@@ -26,6 +26,7 @@
             app:navigationIcon="@drawable/ic_back_white">
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_title_toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_task"
@@ -66,6 +67,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="15dp"
+            style="@style/WhiteText"
             android:background="@drawable/bg_edit_text"
             android:hint="@string/hint_description"
             android:textColorHint="@color/color_default"
@@ -99,9 +101,9 @@
                 android:id="@+id/rbTodo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/WhiteText"
                 android:text="@string/status_task_todo"
                 android:buttonTint="@color/white"
-                android:textColor="@color/white"
                 android:checked="true"
                 android:layout_marginStart="20dp"
                 />
@@ -110,9 +112,9 @@
                 android:id="@+id/rbDoing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/WhiteText"
                 android:text="@string/status_task_doing"
                 android:buttonTint="@color/white"
-                android:textColor="@color/white"
                 android:layout_marginStart="20dp"
                 />
 
@@ -120,9 +122,9 @@
                 android:id="@+id/rbDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/WhiteText"
                 android:text="@string/status_task_done"
                 android:buttonTint="@color/white"
-                android:textColor="@color/white"
                 android:layout_marginStart="20dp"
                 />
 
@@ -138,6 +140,7 @@
             android:layout_marginEnd="20dp"
             android:textAllCaps="false"
             android:textColor="@color/color_default"
+            style="@style/WhiteText"
             app:icon="@drawable/ic_register"
             app:backgroundTint="@null"
             android:background="@drawable/bg_btn"

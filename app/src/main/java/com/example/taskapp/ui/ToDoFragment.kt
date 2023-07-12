@@ -1,12 +1,14 @@
 package com.example.taskapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +18,7 @@ import com.example.taskapp.adapter.TaskTopAdapter
 import com.example.taskapp.model.Status
 import com.example.taskapp.model.Task
 import com.example.taskapp.databinding.FragmentToDoBinding
+import com.example.taskapp.utils.FirebaseHelper
 import com.example.taskapp.utils.showBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -26,6 +29,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import okhttp3.internal.notify
 
 
 class ToDoFragment : Fragment() {
@@ -33,11 +37,11 @@ class ToDoFragment : Fragment() {
     private var _binding: FragmentToDoBinding? = null
     private val binding get() = _binding!!
     private lateinit var taskAdapter: TaskAdapter
-
     private lateinit var task: Task
-    private lateinit var auth: FirebaseAuth
-    private lateinit var reference: DatabaseReference
-//    private lateinit var taskTopAdapter : TaskTopAdapter
+
+    private val viewModel: TaskViewModel by activityViewModels()
+//    centraliza todos os dados do View model no contexto da actitvy, indepedente se o fragment que criou a informação está aberto ou não
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,14 +63,13 @@ class ToDoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
 
-        reference = Firebase.database.reference
-        auth = Firebase.auth
+
         binding.progressBar.isVisible = false
         initRecyclerView()
+        initListeners()
         getTask()
 
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -75,7 +78,35 @@ class ToDoFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_formTaskFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(null)
+            findNavController().navigate(action)
+
+        }
+
+        observeViewModel()
+
+
+    }
+
+    private fun observeViewModel() {
+        viewModel.taskUpdate.observe(viewLifecycleOwner) { updateTask ->
+            if (updateTask.status == Status.TODO) {
+//                Armazena a lista atual do apater
+                val oldList = taskAdapter.currentList
+//            Gera uma nova lista a partir da lista antiga já com a tarefa atualizada
+                val newList = oldList.toMutableList().apply {
+                    find { it.id == updateTask.id }?.description == updateTask.description
+                }
+//                Armazena a posição da tarefa a ser aatualizada na lista
+                val position = newList.indexOfFirst { it.id == updateTask.id }
+
+//               Envia a lista atualizada para o adpater
+                taskAdapter.submitList(newList)
+
+//                Atualiza a tarefa pela posição do adapter
+                taskAdapter.notifyItemChanged(position)
+
+            }
         }
     }
 
@@ -114,6 +145,7 @@ class ToDoFragment : Fragment() {
             }
             TaskAdapter.SELECT_EDIT -> {
 
+
                 Toast.makeText(requireContext(), "Editar ${task.description}", Toast.LENGTH_SHORT)
                     .show()
                 val action = HomeFragmentDirections.actionHomeFragmentToFormTaskFragment(task)
@@ -126,10 +158,12 @@ class ToDoFragment : Fragment() {
                     .show()
             }
             TaskAdapter.SELECT_NEXT -> {
-                Toast.makeText(requireContext(), "Next ${task.description}", Toast.LENGTH_SHORT)
-                    .show()
+                task.status = Status.DOING
+                updateTask(task)
+
             }
             TaskAdapter.SELECT_BACK -> {
+
                 Toast.makeText(requireContext(), "Back ${task.description}", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -138,8 +172,9 @@ class ToDoFragment : Fragment() {
 
 
     private fun getTask() {
-        reference.child("task")
-            .child(auth.currentUser?.uid ?: "")
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val taskList = mutableListOf<Task>()
@@ -158,25 +193,17 @@ class ToDoFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show()
+                    Log.i("INFOTESTE", "onCanceleed:")
 
                 }
             })
     }
 
-    private fun listEmpty(tasklist: List<Task>) {
-        binding.textInfo.text = if (tasklist.isEmpty()) {
-            getString(R.string.text_list_task_empty)
-        } else {
-            ""
-        }
-
-    }
 
     private fun deleteTask(task: Task) {
-        reference
-            .child("task")
-            .child(auth.currentUser?.uid ?: "")
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
             .child(task.id)
             .removeValue().addOnCompleteListener { result ->
                 if (result.isSuccessful) {
@@ -190,6 +217,39 @@ class ToDoFragment : Fragment() {
 
                 }
             }
+    }
+
+
+    private fun updateTask(task: Task) {
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
+            .child(task.id)
+            .setValue(task).addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.text_list_task_save,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+        Toast.makeText(requireContext(), "Next ${task.description}", Toast.LENGTH_SHORT)
+            .show()
+
+    }
+
+    private fun listEmpty(tasklist: List<Task>) {
+        binding.textInfo.text = if (tasklist.isEmpty()) {
+            getString(R.string.text_list_task_empty)
+        } else {
+            ""
+        }
+
     }
 
 

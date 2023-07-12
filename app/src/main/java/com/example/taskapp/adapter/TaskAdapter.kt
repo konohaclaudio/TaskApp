@@ -80,6 +80,8 @@ class TaskAdapter (
             }
 
             Status.DOING -> {
+
+
                 holder.binding.ibBack.setColorFilter(
                     ContextCompat.getColor(
                         context, R.color.color_status_todo)

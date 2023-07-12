@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.taskapp.R
 import com.example.taskapp.databinding.FragmentFormTaskBinding
 import com.example.taskapp.model.Status
@@ -20,20 +21,20 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.taskapp.utils.FirebaseHelper
 
 
-class FormTaskFragment : Fragment() {
+class FormTaskFragment : BaseFragment() {
 
     private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
-    private var newTask: Boolean = true
-    private var status: Status = Status.TODO
 
-    private val args: FormTaskFragmentArgs by navArgs()
 
     private lateinit var task: Task
-    private lateinit var auth: FirebaseAuth
-    private lateinit var reference: DatabaseReference
+    private var newTask: Boolean = true
+    private var status: Status = Status.TODO
+    private val args: FormTaskFragmentArgs by navArgs()
+    private val viewModel: TaskViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,10 +56,19 @@ class FormTaskFragment : Fragment() {
 
         initToolbar(binding.toolbar)
         binding.progressBar.isVisible = false
-        reference = Firebase.database.reference
-        auth = Firebase.auth
 
+        getArgs()
         initListerner()
+    }
+
+    private fun getArgs() {
+        args.task.let { it ->
+            if (it != null) {
+                this.task = it
+
+                configTask()
+            }
+        }
     }
 
 
@@ -84,10 +94,13 @@ class FormTaskFragment : Fragment() {
 
         if (description.isNotEmpty()) {
 
+            hideKeyboard()
+
             binding.progressBar.isVisible = true
 
-            if (newTask) task = Task()
-            task.id = reference.database.reference.push().key ?: ""
+            if (newTask) {
+                task = Task()
+            }
             task.description = description
             task.status = status
             saveTask()
@@ -99,8 +112,9 @@ class FormTaskFragment : Fragment() {
     }
 
     private fun saveTask() {
-        reference.child("task")
-            .child(auth.currentUser?.uid ?: "")
+        FirebaseHelper.getDatabase()
+            .child("tasks")
+            .child(FirebaseHelper.getIdUser())
             .child(task.id)
             .setValue(task).addOnCompleteListener { result ->
                 if (result.isSuccessful) {
@@ -108,12 +122,23 @@ class FormTaskFragment : Fragment() {
                     Toast.makeText(requireContext(), R.string.msg_toast_save, Toast.LENGTH_SHORT)
                         .show()
 
-                    if (newTask) {
+                    if (newTask) { //nwova
 
                         findNavController().popBackStack()
 
-                    } else {
+                    } else { //editando
+
+                        viewModel.setUpdateTask(task)
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.text_update_task_formtask_fragment,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+
                         binding.progressBar.isVisible = false
+                        findNavController().popBackStack()
+
 
                     }
 
@@ -142,4 +167,24 @@ class FormTaskFragment : Fragment() {
     }
 
 
+    private fun configTask() {
+        newTask = false
+        status = task.status
+        binding.textTitleToolbar.text = ("Editando: " + task.description)
+
+        binding.edtDescription.setText(task.description)
+
+        setStatus()
+
+    }
+
+
+    private fun setStatus() {
+        val id = when (task.status) {
+            Status.TODO -> R.id.rbTodo
+            Status.DOING -> R.id.rbDoing
+            else -> R.id.rbDone
+        }
+
+    }
 }

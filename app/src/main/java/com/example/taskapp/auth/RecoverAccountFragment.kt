@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.taskapp.R
 import com.example.taskapp.databinding.FragmentRecoverAccountBinding
+import com.example.taskapp.utils.FirebaseHelper
 import com.example.taskapp.utils.initToolbar
 import com.example.taskapp.utils.showBottomSheet
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +20,6 @@ import com.google.firebase.ktx.Firebase
 class RecoverAccountFragment : Fragment() {
     private var _binding: FragmentRecoverAccountBinding? = null
     private val binding get() = _binding!!
-    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,8 +44,6 @@ class RecoverAccountFragment : Fragment() {
 
         initToolbar(binding.toolbar)
 
-        auth = Firebase.auth
-
         initListerner()
 
     }
@@ -68,23 +66,28 @@ class RecoverAccountFragment : Fragment() {
         if (email.isNotEmpty()) {
 
             binding.progressBar.isVisible = true
+            recoverAccountUser(email)
 
             Toast.makeText(requireContext(), R.string.msg_toastok, Toast.LENGTH_SHORT).show()
         } else {
-            showBottomSheet(message = getString(R.string.reccouver_account))
+            showBottomSheet(message = getString(R.string.reccouver_account_email))
         }
 
 
     }
 
     private fun recoverAccountUser(email: String) {
-        auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
-            if(task.isSuccessful){
+        FirebaseHelper.getAuth().sendPasswordResetEmail(email).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 showBottomSheet(message = getString(R.string.text_message_recover_account_fragment))
-            }else {
+            } else {
                 binding.progressBar.isVisible = false
-                Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show() }
-        }}
+                showBottomSheet(
+                    message = getString(FirebaseHelper.validError(task.exception?.message.toString()))
+                )
+            }
+        }
+    }
 
 
 }

@@ -126,17 +126,16 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_password"
+                    style="@style/EditTextTheme"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit_text"
+                    android:drawableStart="@drawable/ic_password"
                     android:hint="@string/hint_password"
                     android:inputType="textPassword"
-                    style="@style/EditTextTheme"
-                    android:padding="15dp"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_password"
-                    android:background="@drawable/bg_edit_text"
-                    android:layout_marginStart="20dp"
-                    />
+                    android:padding="15dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/showHideBtn"

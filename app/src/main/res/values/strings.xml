@@ -5,10 +5,11 @@
     <string name="email">E-mail</string>
     <string name="login_edt_email">Preencha o e-mail</string>
     <string name="edt_password">Senha</string>
-    <string name="hint_password">Escreva a senha</string>
+    <string name="hint_password"> Escreva a senha</string>
     <string name="login">Login</string>
     <string name="text_button_create_account">Criar conta</string>
     <string name="reccouver_account">Recuperar conta</string>
+    <string name="reccouver_account_email">Informe seu e-mail.</string>
 
     <!--Generics -->
     <string name="msg_toastok">Tudo certo!</string>
@@ -23,9 +24,10 @@
     <string name="btn_send">Enviar</string>
     <string name="btn_ok">Ok</string>
     <string name="error">Erro</string>
-    <string name="text_list_task_empty">Nehuma tarefas cadastrada.</string>
+    <string name="text_list_task_empty">Nehuma tarefa cadastrada.</string>
     <string name="text_list_task_load">Aguarde, estamos carregando as informações.</string>
-    <string name="text_list_task_delete">Tarefa deletada com sucesso.</string>
+    <string name="text_list_task_delete">Tarefa, deletada com sucesso.</string>
+    <string name="text_list_task_save">Tarefa, salva com sucesso.</string>
     <string name="text_button_dialog_confirm">Confirmar</string>
     <string name="text_title_dialog_delete">Deseja remover esta tarefa?</string>
     <string name="text_message_dialog_delete">Aperte em confirmar para remover a tarefa.</string>
@@ -56,6 +58,7 @@
     <string name="email_empty_formtask_fragment">Preencha seu e-mail</string>
     <string name="password_empty_formtask_fragment">Preencha uma senha</string>
     <string name="new_task">Nova tarefa</string>
+    <string name="text_update_task_formtask_fragment">Tarefa atualizada com sucesso!</string>
 
     <!--Recover Task Fragment -->
     <string name="text_recovery">Insira seu email cadastrado para recuperar a senha</string>
@@ -70,18 +73,28 @@
     <string name="text_warning">Entendi</string>
     <string name="text_button">Ok</string>
     <string name="text_message">Insira seu email</string>
-
     <string name="btn_remove">Remover</string>
     <string name="btn_editar">Editar</string>
     <string name="btn_details">Detalhes</string>
     <string name="hello_blank_fragment">Detalhes</string>
     <string name="create_account">create account</string>
+    <!--Login Fragment -->
 
 
     <!--Home Fragment -->
     <string name="text_title_dialog_confirm_logout">Deseja sair?</string>
     <string name="text_button_dialog_confirm_logout">Confirmar</string>
     <string name="text_message_dialog_confirm_logout">Aperte em confirmar para sair da sua conta</string>
+    <!--Home Fragment -->
+
+
+    <!--Erros Firebase -->
+    <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
+    <string name="invalid_email_register_fragment">Insira um e-amil válido</string>
+    <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
+    <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
+    <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
+    <!--Erros Firebase -->
 
 
 
